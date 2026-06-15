@@ -1,6 +1,7 @@
 use AppleUADB
 
 
+
 CREATE TABLE Products
 (
     Id INT IDENTITY(1,1) PRIMARY KEY,
@@ -18,10 +19,12 @@ CREATE TABLE Products
     DisplayBrightness INT NOT NULL,
 
     PixelsAmount INT NOT NULL,
-    ColorsSupported BIGINT NULL,
+    ColorsSupported INT NULL,
 
     Material NVARCHAR(50) NOT NULL,
+
     Chip NVARCHAR(50) NOT NULL,
+    ChipInfo NVARCHAR(MAX) NULL,
 
     CameraResolution NVARCHAR(50) NOT NULL,
 
