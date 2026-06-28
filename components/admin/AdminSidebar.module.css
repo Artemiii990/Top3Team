@@ -1,0 +1,47 @@
+.sidebar {
+  width: 260px;
+  background: #111;
+  color: white;
+  min-height: 100vh;
+  padding: 32px 24px;
+  position: sticky;
+  top: 0;
+}
+
+.logo {
+  margin-bottom: 32px;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.link {
+  display: block;
+  padding: 12px 0;
+  color: rgba(255,255,255,.8);
+  transition: .2s;
+}
+
+.link:hover {
+  color: white;
+}
+
+
+.active {
+  color: white;
+  font-weight: 600;
+}
+
+.active::before {
+  content: '';
+
+  display: inline-block;
+
+  width: 4px;
+  height: 16px;
+
+  background: #0a84ff;
+
+  margin-right: 8px;
+
+  border-radius: 999px;
+}

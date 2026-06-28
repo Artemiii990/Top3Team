@@ -1,0 +1,169 @@
+.footer {
+  padding: 80px 80px 48px;
+  background: var(--ink-black);
+  border-top: 1px solid var(--rule);
+  font-size: 12px;
+  color: var(--text-tertiary);
+}
+
+.notes {
+  max-width: 100%; /*900px -> 100%. дозволяє тексту розтягнутися по всій ширині футера*/
+  margin-bottom: 24px; /*64 -> 24. відступ від приміток до лінії*/
+  padding-bottom: 24px; /*внутрішній відступ від тексту до лінії*/
+  border-bottom: 1px solid var(--rule); /*лінія під текстом*/
+  line-height: 1.6;
+  font-size: 11px;
+  color: var(--text-tertiary);
+}
+.notes p {
+  margin-bottom: 8px;
+}
+
+/*прибираємо відступ знизу для останнього абзацу*/
+.notes p:last-child {
+  margin-bottom: 0;
+}
+
+.links {
+  display: flex;
+  justify-content: space-between; /*рівномірно розподіляє усі колонки по ширині*/
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px; /*48 -> 24*/
+  /*gap: 40px 48px; перше число (40рх) - це відступ між блоками, які стоять один під одним*/
+  padding-bottom: 24px; /*зменшуємо внутрішній відступ знизу з 48 до 24*/
+  /*border-bottom: 1px solid var(--rule);*/
+  margin-bottom: 16px; /*32 -> 16*/
+}
+.links h6 {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin-bottom: 16px;
+}
+.links a {
+  display: block;
+  color: var(--text-tertiary);
+  padding: 4px 0; /*щільні відступи між посиланнями*/
+  font-size: 12px;
+  text-decoration: none;
+  transition: color 0.2s var(--ease);
+}
+.links a:hover {
+  color: var(--text-primary);
+}
+
+.links h6 {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 10px; /*компактний відступ від заголовка до лінків*/
+}
+
+/*кожна з 4-х колонок росте вниз*/
+.column { 
+  display: flex;
+  flex-direction: column;
+  flex: 1; /*однакова ширина для усіх стовпчиків*/
+  gap: 24px; /*відступ між верхньою та нижньою колонками*/
+}
+
+.sectionBlock { 
+  display: block;
+  flex-direction: column;
+}
+
+.partnerText {
+  font-size: 12px;
+  color: var(--text-tertiary);
+  padding-bottom: 16px; /*відступ від тексту до лінії*/
+  border-bottom: 1px solid var(--rule); /*лінія тепер знаходиться тут*/
+  margin-bottom: 24px; /*відступ від лінії вниз до копірайту*/
+  line-height: 1.5;
+}
+
+.partnerText a {
+  color: #0066cc;
+  text-decoration: underline; /*підкреслення лінку*/
+  transition: color 0.2s var(--ease);
+}
+
+.partnerText a:hover {
+  color: #004499;
+}
+
+/*головний контейнер копірайту*/
+.copyrightBlock {
+  display: flex;
+  justify-content: space-between; /*текст ліворуч, а лінки праворуч*/
+  align-items: center;
+  font-size: 11px;
+  color: var(--text-tertiary);
+  padding-top: 16px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/*текст копірайту*/
+.copyrightText {
+  margin-right: 24px;
+}
+
+/*контейнер для посилань*/
+.copyrightLinks {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/*стиль для кожного посилання*/
+.copyrightLinks a {
+  color: var(--text-tertiary);
+  text-decoration: none;
+  padding: 0 10px;
+  /*вертикальна лінія праворуч до кожного посилання*/
+  border-right: 1px solid var(--rule);
+  transition: color 0.2s var(--ease);
+}
+
+.copyrightLinks a:hover {
+  color: var(--text-primary);
+  text-decoration: underline;
+}
+
+/*прибираємо вертикальну лінію в останнього посилання*/
+.copyrightLinks a:last-child {
+  border-right: none;
+  padding-right: 0;
+}
+
+/*перше посилання по ліву сторону*/
+.copyrightLinks a:first-child {
+  padding-left: 0;
+}
+
+/*стиль для слова Україна*/
+.langLink {
+  margin-left: auto; /*для десктопу зміщення максимально праворуч*/
+}
+
+/*адаптивність для мобільних екранів*/
+@media (max-width: 768px) {
+  .copyrightBlock {
+    flex-direction: column;
+    align-items: flex-start; /*на смартфоні повинні бути один під одним*/
+  }
+
+  .copyrightLinks a {
+    padding: 4px 8px 4px 0; /*зручніші відступи для телефону*/
+  }
+}
+
+@media (max-width: 900px) {
+  .footer {
+    padding: 64px 24px 32px;
+  }
+  .links {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+  }
+}

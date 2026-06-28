@@ -1,0 +1,119 @@
+.hero {
+  background: var(--ink-black);
+  padding: 64px 80px 96px;
+}
+
+/* "iPhone" big bold headline, left-aligned */
+.headline {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: clamp(48px, 7vw, 80px);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  margin-bottom: 56px;
+}
+
+.tiles {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  gap: 48px;
+}
+
+.tile {
+  flex: 0 1 auto;
+}
+
+.tileLink {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  text-decoration: none;
+}
+
+/* Real product photo wrapper — replaces the old gradient placeholder */
+.imageWrap {
+  display: flex;
+  align-items: flex-end; /* притискає телефони до низу */
+  justify-content: center;
+
+  /* ЗАДАЄМО ОДНАКОВИЙ РОЗМІР ДЛЯ ВСІХ БЛОКІВ */
+  width: 88px; /* Чітка ширина контейнера */
+  height: 144px; /* Чітка висота контейнера */
+  margin-bottom: 14px;
+  transition: transform 0.25s var(--ease);
+}
+
+.tileImage {
+  /* Картинка заповнює контейнер, але зберігає свої пропорції */
+  width: auto; /*100% -> auto*/
+  height: auto; /*100% -> auto*/
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.tileLink:hover .imageWrap {
+  transform: translateY(-2px);
+}
+
+.tileLabel {
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+  text-align: center;
+}
+
+/*напис "новий" під айфоном*/
+.tileTag {
+  font-size: 12px;
+  font-weight: 600;
+  /* color: var(--accent); */
+  color: #b64400;
+  margin-top: -10px;
+}
+
+/* Робимо контейнер останньої картинки базою для позиціонування */
+.tiles .tile:last-child .imageWrap {
+  position: relative; 
+}
+
+/* Керуємо безпосередньо розміром та положенням останньої картинки */
+.tiles .tile:last-child .tileImage {
+  position: absolute;
+  bottom: 0; 
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: auto;
+  height: auto;
+  
+  /* ТУТ ЗАДАЄТЬСЯ РОЗМІР: змінюємо max-height на той розмір, який потрібен */
+  max-height: 130px; 
+  max-width: none; 
+}
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+@media (max-width: 900px) {
+  .hero {
+    padding: 40px 24px 64px;
+  }
+  .headline {
+    margin-bottom: 40px;
+  }
+  .tiles {
+    gap: 28px 24px;
+  }
+  .imageWrap {
+    width: 56px;
+    height: 112px;
+  }
+  .tileLabel {
+    font-size: 13px;
+  }
+}

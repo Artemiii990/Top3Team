@@ -1,0 +1,156 @@
+.section {
+  background: var(--ink-black);
+  padding: 64px 0 96px;
+}
+
+.headerRow {
+  padding: 0 80px;
+  margin-bottom: 40px;
+}
+
+.heading {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: clamp(32px, 4vw, 44px);
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+}
+
+/* ==========================
+   TRACK — plain two-up grid
+   ========================== */
+
+.track {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  list-style: none;
+  padding: 0 80px;
+
+  max-width: 1800px; /* Обмежуємо загальну ширину сітки, як у Apple */
+  margin: 0 auto;    /* Центруємо всю сітку по центру екрана */
+}
+
+.card {
+  background: var(--paper); /* Сірий фон картки */
+  border-radius: 28px; /*18 -> 28*/
+  /* Прибираємо padding знизу (останнє значення - 0) */
+  /* padding: 48px 40px 0px;  */
+  padding-top: 48px; /* Залишаємо відступ лише зверху */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden; /* Щоб картинка не вилазила за радіус картки при збільшенні */
+  position: relative;
+
+  height: 800px; /* Фіксуємо висоту картки, щоб блоки були акуратними та однаковими */
+
+  transition:
+    transform 0.3s var(--ease),
+    box-shadow 0.3s var(--ease);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.08);
+}
+
+.cardTitle {
+  font-size: 38px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.cardDescription {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  text-align: center;
+  max-width: 380px; /*420 -> 380*/
+  margin-bottom: 24px;  /*40 -> 24*/
+}
+
+/* Новий контейнер для зображення */
+.imageWrapper {
+  width: 100%;
+  margin-top: auto; /* Притискає фото до самого низу картки */
+  overflow: hidden; /* Маскує зображення, коли воно збільшується */
+  display: flex;
+  justify-content: center;
+
+  height: 100%; /* Дозволяє контейнеру займати весь залишок висоти */
+}
+
+.image {
+  width: 100%;
+  /* ЗБІЛЬШУЄМО max-width, щоб фото стало більшим */
+  /*max-width: 480px; /* Було 420px, збільшили для більшого розміру */
+  height: 100%; /*auto -> 100%. Заповнює весь виділений простір*/
+  display: block;
+  border-radius: 0; /* Прибираємо border-radius, картка все закруглить */
+
+  /*margin-top: auto; /* Притискає фото до низу, якщо картка вища за фото */
+  object-fit: cover; /* Фото ідеально підлаштовується під розмір, зрізаючи зайве */
+  object-position: top center; /* Центрує фокус фото по верхньому краю */
+  transition: transform 0.3s var(--ease);
+}
+
+.card:hover .image {
+  transform: scale(1.03); 
+}
+
+/* Стилі конкретно для картки з чохлами (accessories) */
+.accessories .imageWrapper {
+  height: auto;          /* Дозволяємо контейнеру підлаштуватися під розмір фото */
+  padding-bottom: 0px;  /* Відступ знизу, щоб з'явилися ремінці */
+}
+
+.accessories .image {
+  width: 90%;            /* Робимо фото трішки меншим за шириною (можна поставити від 85% до 95%) */
+  height: auto;          /* Скасовуємо фіксовану висоту */
+  object-fit: contain;   /* Фотографія повністю вписується і не обрізається */
+}
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+
+@media (max-width: 900px) {
+  .section {
+    padding: 48px 0 64px;
+  }
+
+  .headerRow {
+    padding: 0 24px;
+    margin-bottom: 28px;
+  }
+
+  .track {
+    grid-template-columns: 1fr;
+    padding: 0 24px;
+    gap: 16px;
+  }
+
+  .card {
+    /* Прибираємо padding знизу для мобільного (28px -> 0) */
+    padding: 32px 24px 0px; 
+    height: auto;
+  }
+
+  .cardTitle {
+    font-size: 22px;
+  }
+
+  .imageWrapper {
+    height: auto;
+  }
+
+  .image {
+    max-width: 320px;
+    object-fit: contain;
+  }
+}

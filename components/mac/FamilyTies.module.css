@@ -1,0 +1,195 @@
+.section {
+  background: var(--ink-black);
+  padding: 64px 0 96px; /* Прибрали бокові паддінги з секції, перенесли в трек */
+}
+
+.heading {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: clamp(32px, 4vw, 44px);
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  margin-bottom: 40px;
+
+  /*padding: 0 80px; /* Вирівнюємо заголовок по сітці */
+  /* ВИРІВНЮВАННЯ ЗАГОЛОВКА: тепер він чітко на початку сірого блоку */
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0; /* Прибираємо паддінг, щоб заголовок став в один рівень із лівим краєм квадрата */
+}
+
+/*  PANEL - головний сірий блок */
+.panel {
+  background: var(--paper);
+  border-radius: 28px;
+  display: flex;
+  align-items: center;
+  gap: 24px; /* 48 -> 24 Зменшили проміжком між текстом і фото, щоб фото стало більшим */
+  padding: 64px 0 64px 80px; /* Збільшили бокові відступи всередині картки. 0 праворуч — дозволяє фотографії доторкнутися до правого краю */ 
+  
+  /* ОБМЕЖУЄМО розмір сірого блоку та центруємо його */
+  max-width: 1100px;
+  margin: 0 auto;
+  min-height: 520px; /*540 -> 520*/
+  overflow: hidden; /* Щоб фото не вилазило за закруглені кути картки праворуч */
+}
+
+.accordion {
+  flex: 0 0 360px; /* 380 -> 360 Трохи звузили текстову частину, щоб дати простір фото */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Лінії між елементами акордеону */
+.item {
+  border-bottom: 1px solid var(--rule);
+}
+.item:last-child {
+  border-bottom: none; /* Прибирає лінію під iPhone та AirPods */
+}
+
+.itemHeader {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 24px 0;
+  text-align: left;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+}
+
+.itemTitle {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+}
+
+.chevron {
+  flex: 0 0 auto;
+  width: 16px;
+  height: 16px;
+  color: var(--text-tertiary);
+  transition: transform 0.3s var(--ease);
+}
+.chevronOpen {
+  transform: rotate(180deg);
+}
+
+.itemBody {
+  overflow: hidden;
+  transition: max-height 0.35s var(--ease);
+}
+
+.itemDescription {
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--text-secondary);
+  padding-bottom: 24px;
+}
+
+/* IMAGE AREA */
+.imageArea {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 480px; /* 460 -> 480 Збільшили робочу висоту для фото */
+  width: 100%;
+  /* overflow: hidden; */
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  /* тепер фотографія займає максимум простору і не обрізається по краях */
+  max-width: 100%; 
+  /*border-radius: 0; /* В оригіналі на фото Apple власні закруглені краї пристроїв, радіус не потрібен */
+  object-fit: contain; /* Фотографія повністю вписується в блок, показуючи всі деталі */
+  transition: object-position 0.3s ease;
+}
+
+/* СПЕЦІАЛЬНІ СТИЛІ ДЛЯ ПЕРШОГО ФОТО (Mac) */
+.mac.imageArea {
+  justify-content: flex-end; /* Зміщує контейнер впритул праворуч */
+}
+.mac .image {
+  object-fit: contain;
+  object-position: right center; /* Притискає саму картинку з Mac до правого боку блоку */
+}
+
+/* МОДИФІКАТОРИ ДЛЯ ЗБІЛЬШЕННЯ ОСТАННІХ ДВОХ ФОТО */
+/* 1. Коли активні Watch або AirPods, ми трохи зменшуємо ширину акордеону, 
+      щоб дати зображенням ще більше простору для збільшення */
+.panel:has(.watch.imageArea),
+.panel:has(.airpods.imageArea) {
+  gap: 16px; /* Зменшуємо проміжком до мінімуму */
+}
+.panel:has(.watch.imageArea) .accordion,
+.panel:has(.airpods.imageArea) .accordion {
+  flex: 0 0 320px; /* Звужуємо текст із 360px до 320px, вивільняючи місце для фото */
+}
+
+/* якщо потрібно змінити позиціонування для watch чи airpods */
+.watch .image,
+.airpods .image {
+  transform: scale(1.15); /* Збільшуємо фото на 15% від їхнього базового розміру */
+  object-position: center center; /* Вони залишаються по центру своєї області */
+}
+
+/* Додатково: якщо у AirPods обрізаються важливі деталі, можна налаштувати фокус зміщення */
+/* .airpods .image {
+  transform: scale(1.2); 
+} */
+
+.footnoteLink {
+  color: inherit;
+  text-decoration: underline;
+  vertical-align: super; /*надійно піднімає цифру вгору*/
+  font-size: 0.65em; /*12 px -> 0.65em. зменшує розмір цифри*/
+  line-height: 0; /* запобігає збільшенню висоти всього рядка */
+  margin-left: 2px;
+}
+
+.footnoteLink:hover {
+  text-decoration: underline;
+}
+
+/* .footnoteLink sup {
+  font-size: 0.72em;
+  vertical-align: super;
+} */
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+@media (max-width: 900px) {
+  .section {
+    padding: 48px 0 64px;
+  }
+  .heading {
+    padding: 0 24px;
+  }
+  .panel {
+    flex-direction: column;
+    padding: 40px 24px;
+    gap: 32px;
+    min-height: 0;
+    margin: 0 24px;
+  }
+  .accordion {
+    flex: 1 1 auto;
+    width: 100%;
+  }
+  .itemTitle {
+    font-size: 18px;
+  }
+  .imageArea {
+    width: 100%;
+    height: 280px;
+  }
+}

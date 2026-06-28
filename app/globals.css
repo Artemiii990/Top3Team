@@ -1,0 +1,166 @@
+/* ==========================================================
+   iPhone 17 Pro — design tokens + base resets
+   ========================================================== */
+
+:root {
+  /* Light-mode tokens. Legacy --ink-* names kept so component
+     styles don't need rewriting — they now resolve to light surfaces. */
+  --ink-black: #ffffff;
+  --ink-deep: #fafafb;
+  --ink-graphite: #f0f0f2;
+  --ink-titanium: #e8e8eb;
+  --paper: #f5f5f7;
+
+  --text-primary: #1d1d1f;
+  --text-secondary: rgba(29, 29, 31, 0.64);
+  --text-tertiary: rgba(29, 29, 31, 0.42);
+  --text-on-light: #1d1d1f;
+
+  --rule: rgba(0, 0, 0, 0.10);
+  --rule-light: rgba(0, 0, 0, 0.08);
+
+  --accent: #0271e4;
+  --accent-glow: #1a8eff;
+
+  --display: -apple-system, BlinkMacSystemFont, 'SF Pro Display',
+    'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --body: -apple-system, BlinkMacSystemFont, 'SF Pro Text',
+    'Inter Tight', 'Helvetica Neue', sans-serif;
+  --mono: var(--font-jetbrains-mono), ui-monospace, monospace;
+
+  --ease: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  background: var(--ink-black);
+  color: var(--text-primary);
+  font-family: var(--body);
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: geometricPrecision;
+  /* clip (not hidden) so position:sticky works on Safari/Blink */
+  overflow-x: clip;
+}
+
+/* Scroll-snap on the document — only elements with scroll-snap-align act
+   as targets, so snap effectively scopes to the four feature panels. */
+html {
+  scroll-snap-type: y proximity;
+}
+
+/* Disable snap on mobile and for users who prefer reduced motion */
+@media (max-width: 900px), (prefers-reduced-motion: reduce) {
+  html {
+    scroll-snap-type: none;
+  }
+}
+
+img,
+video {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+/* --- shared utilities --- */
+
+.eyebrow {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+
+.heading {
+  font-family: var(--body);
+  font-weight: 500;
+  font-size: clamp(24px, 2.6vw, 36px);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.body-l {
+  font-size: 19px;
+  line-height: 1.55;
+  color: var(--text-secondary);
+  font-weight: 300;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 52px;
+  padding: 0 28px;
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  transition: all 0.25s var(--ease);
+  cursor: pointer;
+  border: 0;
+}
+.btn-primary {
+  background: var(--accent);
+  color: #fff;
+}
+.btn-primary:hover {
+  background: var(--accent-glow);
+  transform: translateY(-1px);
+}
+.btn-ghost {
+  background: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--rule);
+}
+.btn-ghost:hover {
+  border-color: var(--text-primary);
+}
+
+/* --- keyframes --- */
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+    clip-path: inset(0 0 100% 0);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    clip-path: inset(0);
+  }
+}

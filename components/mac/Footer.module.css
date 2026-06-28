@@ -1,0 +1,189 @@
+.footer {
+  padding: 80px 80px 48px;
+  background: var(--ink-black);
+  border-top: 1px solid var(--rule);
+  font-size: 12px;
+  color: var(--text-tertiary);
+}
+
+.notes {
+  max-width: 100%;
+  margin-bottom: 24px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--rule);
+  line-height: 1.6;
+  font-size: 11px;
+  color: var(--text-tertiary);
+}
+.notes p {
+  margin-bottom: 8px;
+  /* scroll-margin-top: 120px; */
+}
+#footnote-13 {
+  scroll-margin-top: 120px;
+}
+.notes a {
+  text-decoration: underline;
+}
+.notes p:last-child {
+  margin-bottom: 0;
+}
+
+/* BREADCRUMB ROW */
+.breadcrumbs {
+  display: flex;
+  align-items: center;   /* вертикальне центрування логотипу, ">" і тексту */
+  gap: 6px;
+  height: 22px;           /* тонкий рядок, а не великий блок */
+  margin-bottom: 24px;
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 14px;           /* висота apple-логотипу */
+  color: var(--text-secondary);
+  transition: color 0.2s var(--ease);
+}
+.logo svg {
+  width: 12px;
+  height: 44px;            /* КЛЮЧОВЕ: без цього svg тягне свій intrinsic
+                               розмір (44px+) і виглядає величезним */
+  fill: currentColor;
+  display: block;
+}
+.logo:hover {
+  color: var(--text-primary);
+}
+
+.separator {
+  color: var(--text-tertiary);
+  font-size: 14px;
+  line-height: 1;
+}
+
+.crumbActive {
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color 0.2s var(--ease);
+}
+.crumbActive:hover {
+  color: var(--text-primary);
+}
+
+.links {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  padding-bottom: 24px;
+  margin-bottom: 16px;
+}
+.links h6 {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+}
+.links a {
+  display: block;
+  color: var(--text-tertiary);
+  padding: 4px 0;
+  font-size: 12px;
+  text-decoration: none;
+  transition: color 0.2s var(--ease);
+}
+.links a:hover {
+  color: var(--text-primary);
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 24px;
+}
+
+.sectionBlock {
+  display: block;
+  flex-direction: column;
+}
+
+.partnerText {
+  font-size: 12px;
+  color: var(--text-tertiary);
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: 24px;
+  line-height: 1.5;
+}
+.partnerText a {
+  color: #0066cc;
+  text-decoration: underline;
+  transition: color 0.2s var(--ease);
+}
+.partnerText a:hover {
+  color: #004499;
+}
+
+.copyrightBlock {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+  color: var(--text-tertiary);
+  padding-top: 16px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.copyrightText {
+  margin-right: 24px;
+}
+.copyrightLinks {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.copyrightLinks a {
+  color: var(--text-tertiary);
+  text-decoration: none;
+  padding: 0 10px;
+  border-right: 1px solid var(--rule);
+  transition: color 0.2s var(--ease);
+}
+.copyrightLinks a:hover {
+  color: var(--text-primary);
+  text-decoration: underline;
+}
+.copyrightLinks a:last-child {
+  border-right: none;
+  padding-right: 0;
+}
+.copyrightLinks a:first-child {
+  padding-left: 0;
+}
+.langLink {
+  margin-left: auto;
+}
+
+@media (max-width: 768px) {
+  .copyrightBlock {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .copyrightLinks a {
+    padding: 4px 8px 4px 0;
+  }
+}
+
+@media (max-width: 900px) {
+  .footer {
+    padding: 64px 24px 32px;
+  }
+  .links {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+  }
+}

@@ -1,0 +1,441 @@
+/*рукописний або акварельний шрифт (через Google Fonts) для нашого банера*/
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&display=swap');
+
+/* ---------------- LAYOUT BASE ---------------- */
+
+.section {
+  min-height: 580px; 
+  height: 75vh; /* Зберігаємо фіксовану висоту для десктопів */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between; /* Текст завжди вгорі, медіа завжди внизу */
+  text-align: center;
+  position: relative;
+  padding: 56px 24px 0;
+  overflow: hidden;
+  margin-bottom: 12px;
+  box-sizing: border-box;
+}
+
+/* ---------------- HERO (iPhone) ---------------- */
+
+.hero {
+  background: #f5f5f7; 
+  color: #1d1d1f;      
+  padding-top: 120px; /*60 -> 120*/  
+}
+
+/* ---------------- MAC ---------------- */
+
+.mac {
+  background: 
+    /*1. Шар для правої сторони: йде зверху-вниз, займає 50% ширини і 100% висоти справа*/
+    linear-gradient(to bottom, #d4eaf5 10%, #ebf2f8 60%, #f2f6f9 100%) no-repeat left top / 50% 100%,
+
+    /* 2. Базовий шар для лівої сторони та центру: йде зліва направо */
+    linear-gradient(to bottom, #e0eef7 0%, #e9f2f7, #e5f0f6 15%, #f3f7fa, #f9f9f9 100%) no-repeat right top / 100% 100%;
+  color: #1d1d1f;
+  padding-top: 60px;
+}
+
+/* ---------------- iPad ---------------- */
+
+.ipad {
+  background: linear-gradient(to bottom, #addcee 50%, #bbe0f0, #c5e5f2, #d9ecf2 100%);
+  color: #1d1d1f;
+  padding-top: 60px;
+}
+
+.airText {
+  /* 1. Підключаємо завантажений живий шрифт пензля */
+  font-family: 'Caveat', cursive;
+  
+  /* 2. Рукописні літери тонші, тому робимо їх максимально жирними */
+  font-weight: 600; 
+  
+  /* 3. Збільшуємо розмір шрифту */
+  font-size: 1.45em; 
+  
+  /* 4. фірмовий синій градієнт */
+  background: linear-gradient(180deg, #0d66ba 0%, #1e72bf 50%, #4992ce 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  
+  /* 5. Додаємо м'яке об'ємне світіння навколо літер */
+  text-shadow: 0px 2px 8px rgba(59, 130, 246, 0.2);
+  /* 5. Накладаємо чисту тінь через фільтр */
+  /*filter: drop-shadow(0px 2px 6px rgba(59, 130, 246, 0.3));*/
+  
+  /* 6. Акуратно піднімаємо слово вгору на пару пікселів */
+  display: inline-block;
+  margin-left: -8px; /* Сильно посуне ліворуч, прямо до літери 'd' */
+  transform: translateY(2px); /* рухає положення тексту */
+}
+
+/* ---------------- CONTENT ---------------- */
+
+.content {
+  position: relative;
+  z-index: 2;
+  max-width: 900px;
+  margin-top: 0;
+  flex-shrink: 0;
+  animation: fadeUp 0.8s cubic-bezier(0.25, 1, 0.5, 1) both;
+}
+
+.title {
+  font-size: clamp(40px, 4.5vw, 56px); 
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  line-height: 1.07;
+}
+
+.subtitle {
+  margin-top: 6px;
+  font-size: clamp(19px, 2vw, 24px); 
+  line-height: 1.21;
+  opacity: 1; 
+  font-weight: 400;
+}
+
+/* ---------------- MEDIA (banners) ---------------- */
+
+.media {
+  display: flex;
+  align-items: flex-end; /* Жорстко притискає до нижнього краю */
+  justify-content: center;
+  width: 100%;
+  flex: 1; 
+  margin-top: 24px;
+}
+
+.media img {
+  width: 100%; /* Дозволяє картинці адаптуватися по ширині блок */
+  height: auto; /* Захищає від пропорційного стискання */
+  object-fit: contain;
+  vertical-align: bottom;
+}
+
+/* Індивідуальні ліміти для великих картинок, щоб вони не перекривали текст */
+/*Індивідуальні ліміти та збільшення для головного банера iPhone*/
+.hero .media img {
+  max-width: 100%; /*980px -> 100%*/
+  max-height: 395px; /* Змінюємо ліміт висоти з 420px до 395px */
+
+  object-fit: contain;
+  
+  /* scale(1.2) робить лінійку iPhone більшою на 20% */
+  /* translateY(-10px) акуратно піднімає картинку вгору, щоб вона гарно сиділа в банері */
+  transform: scale(1.3) translateY(-50px);
+  
+  transform-origin: bottom center; /* Картинка збільшується від нижнього краю */
+}
+
+.ipad .media img {
+  max-width: 100%; /* Дозволяємо картинці зайняти більше простору по ширині */
+  max-height: 515px; /* підняти висоту */
+  object-fit: contain; /* Залишаємо contain, щоб планшет не деформувався */
+
+  /* scale(1.15) збільшує, а translateY(-20px) акуратно піднімає картинку вгору на 20 пікселів */
+  transform: scale(1.16) translateY(-70px);
+  transform-origin: bottom center; /* Збільшення йде від нижнього краю, щоб планшет міцно стояв на дні */
+}
+
+.mac .media img {
+  max-width: 100%; 
+  max-height: 540px; 
+  object-fit: contain;
+  /* scale(1.18) робить макбук більшим, а translateY(-25px) піднімає його над нижньою межею */
+  transform: scale(1.18) translateY(-135px);
+  transform-origin: bottom center;
+}
+
+/* ---------------- ACTIONS / BUTTONS ---------------- */
+
+.actions {
+  margin-top: 14px;
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+}
+
+.cta {
+  display: inline-block;
+  padding: 11px 21px;
+  border-radius: 980px;
+  background: #0071e3;
+  color: #fff;
+  font-size: 17px;
+  font-weight: 400;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.15s ease;
+}
+
+.cta:hover {
+  background: #0077ed;
+}
+
+.cta:active {
+  transform: scale(0.98);
+}
+
+.cta:focus-visible {
+  outline: 2px solid #0071e3;
+  outline-offset: 3px;
+}
+
+/* ---------------- GRID ---------------- */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  padding: 0 12px 12px;
+  background: #fff;
+  box-sizing: border-box;
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 580px; 
+  padding: 56px 40px 0;
+  text-align: center;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.cardLight {
+  background: #f5f5f7;
+  color: #1d1d1f;
+}
+
+.cardDark {
+  background: #000000; 
+  color: #fff;
+}
+
+.cardText {
+  flex-shrink: 0;
+  animation: fadeUp 0.8s cubic-bezier(0.25, 1, 0.5, 1) both;
+}
+
+.cardTitle {
+  font-size: clamp(28px, 3vw, 40px);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.cardSubtitle {
+  margin-top: 6px;
+  font-size: clamp(16px, 1.5vw, 19px);
+  opacity: 1;
+  max-width: 420px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cardMedia {
+  flex: 1;
+  display: flex;
+  align-items: flex-end; 
+  justify-content: center;
+  margin-top: 24px;
+  width: 100%;
+}
+
+.cardMedia img {
+  width: 100%; /* Картинка адаптивна всередині своєї колонки */
+  height: auto;
+  max-height: 360px; /* Чіткий ліміт висоти для карток */
+  object-fit: contain;
+  vertical-align: bottom;
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.card:hover .cardMedia img {
+  transform: scale(1.02); 
+}
+
+/* --- ТОЧКОВІ ЗМІНИ ДЛЯ КАРТКИ (AirPods Max 2) --- */
+
+/* Змінюємо внутрішні відступи тільки у першій картці сітки */
+.grid .card:first-of-type {
+  padding: 0 0 56px 0; /* Трохи зменшили відступ, щоб збалансувати загальний вигляд */
+  justify-content: flex-start; 
+  background: #f5f5f7; 
+}
+
+/* Переносимо текст AirPods Max вниз */
+.grid .card:first-of-type .cardText {
+  order: 2; 
+  margin-top: auto; 
+  padding: 0 40px; 
+}
+
+/* Переносимо фото AirPods Max наверх */
+.grid .card:first-of-type .cardMedia {
+  order: 1; 
+  margin-top: 0;
+  margin-bottom: 20px; 
+  align-items: flex-start; 
+}
+
+/* Застосовуємо режим змішування кольорів для видалення білого фону */
+.grid .card:first-of-type .cardMedia img {
+  max-height: 360px;
+  width: auto;
+  object-fit: contain;
+  
+  /* прибирає білий фон навколо навушників */
+  mix-blend-mode: multiply; 
+  
+  /* Трохи збільшуємо масштаб, а позицію (translateY) робимо нульовою, 
+     оскільки білих країв більше не видно і картинку не треба ховати вгору */
+  transform: scale(1.1) translateY(0); 
+  transform-origin: top center; 
+}
+
+
+/* --- ЗМІНИ ДЛЯ КАРТКИ (MacBook Pro) --- */
+
+/* 1. Виводимо текст другої картки на передній план */
+.grid .card:nth-of-type(2) .cardText {
+  position: relative;
+  z-index: 10; /* Піднімає текст вище за будь-яку картинку */
+}
+
+/* 2. Збільшуємо ноутбук і заганяємо його під текст */
+.grid .card:nth-of-type(2) .cardMedia img {
+  max-height: 500px;
+  width: auto;
+  object-fit: contain;
+  
+  /* Повертаємо початкове сильне збільшення та підйом вгору */
+  transform: scale(1.15) translateY(-110px); 
+  transform-origin: bottom center;
+}
+
+
+/* --- ТОЧКОВІ ЗМІНИ ДЛЯ КАРТКИ (AirPods Pro 3) --- */
+
+.grid .card:nth-of-type(3) {
+  padding-bottom: 56px; /* Робимо нижній відступ */
+}
+
+/* Коригуємо розмір, блендинг та яскравість навушників */
+.grid .card:nth-of-type(3) .cardMedia img {
+  max-height: 340px; /* Трохи збільшуємо рамки для більшого масштабу */
+  width: auto;
+  object-fit: contain;
+  
+  /* робить білий квадратний фон картинки повністю прозорим */
+  mix-blend-mode: multiply; 
+  
+  /* підсилюємо яскравість та контраст, щоб самі навушники знову стали білими, а не сірими */
+  filter: brightness(1.0) contrast(1.05); 
+  
+  /* Збільшуємо навушники на 25% та акуратно центруємо по вертикалі (без translateY), 
+     оскільки брудних білих країв більше немає і ховати картинку вниз не потрібно */
+  transform: scale(1.33) translateY(0); 
+  transform-origin: center center;
+}
+
+/* --- ТОЧКОВІ ЗМІНИ ДЛЯ IPAD PRO ТА WATCH SERIES 11 --- */
+
+.grid .card:nth-of-type(5) .cardText, .grid .card:nth-of-type(6) .cardText {
+  position: relative;
+  z-index: 10; /* Піднімає текст вище за будь-яку картинку */
+}
+
+.grid .card:nth-of-type(5) .cardMedia img,
+.grid .card:nth-of-type(6) .cardMedia img {
+  max-height: 510px; /* Даємо картинкам більше простору для росту */
+  width: auto;
+  object-fit: contain;
+  
+  /* Збільшуємо тільки ці дві картки на 22% і піднімаємо вгору */
+  transform: scale(1.44) translateY(-40px); 
+  transform-origin: bottom center;
+}
+
+
+/* ---------------- ANIMATION ---------------- */
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .content,
+  .cardText {
+    animation: none;
+  }
+
+  .cta,
+  .cardMedia img {
+    transition: none;
+  }
+}
+
+/* ---------------- RESPONSIVE ---------------- */
+
+@media (max-width: 900px) {
+  .section {
+    height: 520px;
+    min-height: auto;
+    padding: 48px 20px 0;
+  }
+
+  .hero .media img,
+  .ipad .media img,
+  .mac .media img {
+    max-height: 280px;
+  }
+
+  .card {
+    height: 500px;
+    padding: 48px 24px 0;
+  }
+
+  .cardMedia img {
+    max-height: 260px;
+  }
+  
+  /* Адаптивність для першої картки на мобільних */
+  .grid .card:first-of-type {
+    padding: 0 0 48px 0;
+  }
+  
+  .grid .card:first-of-type .cardMedia img {
+    max-height: 240px;
+    transform: scale(1.05) translateY(-5px);
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 32px;
+  }
+
+  .subtitle {
+    font-size: 17px;
+  }
+}

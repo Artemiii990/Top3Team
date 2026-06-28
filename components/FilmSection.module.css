@@ -1,0 +1,222 @@
+/* Section has an explicit height so the sticky pin stays glued for the
+   full duration of the four feature scroll points. */
+/* .section {
+  position: relative;
+  background: var(--ink-black);
+  height: 500vh;
+}
+
+.pin {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  display: grid;
+  place-items: center;
+  z-index: 1;
+  padding: 0 80px;
+}
+
+.film {
+  width: 100%;
+  max-width: 920px;
+  aspect-ratio: 16 / 9;
+  display: block;
+  border-radius: 14px;
+  background: #fff;
+  object-fit: cover;
+  box-shadow:
+    0 70px 140px -40px rgba(2, 113, 228, 0.12),
+    0 35px 70px -20px rgba(0, 0, 0, 0.08);
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+.poster {
+  width: 100%;
+  max-width: 920px;
+  aspect-ratio: 16 / 9;
+  border-radius: 14px;
+  background: url('/media/hero-poster.jpg') center / cover no-repeat;
+  display: none;
+} */
+
+/* Features absolute-positioned at fixed scroll points within the section.
+   They rise up beside the pinned video as the user scrolls. */
+/* .features {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+} */
+
+/* --- Feature card: frosted glass over the sticky video --- */
+/* .feature {
+  position: absolute;
+  top: var(--at, 100vh);
+  width: min(310px, 30vw);
+  padding: 22px 24px 22px;
+  pointer-events: auto;
+  scroll-snap-align: center;
+  scroll-snap-stop: normal;
+
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(28px) saturate(180%);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  border-radius: 18px;
+  box-shadow:
+    0 40px 80px -24px rgba(2, 113, 228, 0.14),
+    0 18px 36px -12px rgba(0, 0, 0, 0.10),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95);
+
+  opacity: 0;
+  transform: translateY(40px);
+  transition:
+    opacity 0.9s var(--ease),
+    transform 0.9s var(--ease);
+}
+
+.feature.in {
+  opacity: 1;
+  transform: translateY(0);
+} */
+
+/* Pulled out toward the edges — sit ~500px off viewport center, so the cards
+   straddle the outer edge of the video rather than crowd the middle. */
+/* .alignRight {
+  right: calc(50% - 600px);
+}
+.alignLeft {
+  left: calc(50% - 600px);
+}
+
+.featMeta {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.featNum {
+  font-family: var(--mono);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: rgba(2, 113, 228, 0.10);
+  padding: 4px 8px;
+  border-radius: 5px;
+}
+
+.featTitle {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: clamp(20px, 1.8vw, 26px);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+}
+.featTitle em {
+  font-style: normal;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.featBody {
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--text-secondary);
+  font-weight: 400;
+  margin-bottom: 18px;
+}
+
+.featStats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  padding-top: 14px;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+.featStats > div {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-start;
+}
+.featStats .big {
+  display: block;
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  font-variant-numeric: tabular-nums;
+}
+.featStats .lab {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+} */
+
+/* --- Mobile: drop sticky pin, autoplay video, stack features below --- */
+/* @media (max-width: 900px) {
+  .section {
+    height: auto;
+    padding: 64px 20px 24px;
+  }
+  .pin {
+    position: relative;
+    height: auto;
+    top: auto;
+    padding: 0;
+    margin-bottom: 32px;
+  }
+  .film {
+    max-width: 100%;
+    border-radius: 12px;
+  }
+  .features {
+    display: none;
+  }
+  .feature {
+    position: relative;
+    top: auto !important;
+    right: auto !important;
+    left: auto !important;
+    width: 100%;
+    /* Mobile cards: solid white-tint surface (no video underneath to blend) */
+    /* background: rgba(255, 255, 255, 0.96);
+    border-radius: 14px;
+    padding: 20px 22px;
+    /* Reset the desktop calc()-based offsets */
+    /* transform: none;
+    opacity: 1;
+  }
+  .featTitle {
+    font-size: 22px;
+  }
+  .featBody {
+    font-size: 14px;
+  }
+  .featStats .big {
+    font-size: 18px;
+  }
+} */
+
+/* --- Reduced motion: replace video with static poster --- */
+/* @media (prefers-reduced-motion: reduce) {
+  .film {
+    display: none;
+  }
+  .poster {
+    display: block;
+  }
+  .feature {
+    transition: opacity 0.3s linear;
+  }
+}  */
